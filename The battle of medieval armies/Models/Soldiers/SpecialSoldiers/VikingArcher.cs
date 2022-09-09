@@ -44,15 +44,8 @@ namespace The_battle_of_medieval_armies.Models.Soldiers.SpecialSoldier
         {
             if (this.Distance > this.Weapone.Range && this.ALive)
             {
-                //Console.WriteLine($"Viking archer {Name} stands at the point and waiting for enemies!");
                 this.Distance -= 2;
             }
-            //else if (this.ALive)
-            //{
-            //    this.Distance = 0;
-            //    Console.WriteLine($"Rome archer {this.Name} is attack enemy warriors!");
-
-            //}
         }
         public override string ToString()
         {

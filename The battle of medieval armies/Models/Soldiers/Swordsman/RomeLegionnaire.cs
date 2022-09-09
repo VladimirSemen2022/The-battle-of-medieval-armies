@@ -44,15 +44,10 @@ namespace ConsoleApp2.Soldiers.Swordsman
         {
             if (this.Distance > this.Weapone.Range && this.ALive)
             {
-                //Console.WriteLine($"Rome legionaire {this.Name} walks to the enemy warriors!");
                 this.Distance -= 3;
             }
-            //else if (this.ALive)
-            //{
-            //    this.Distance = 0;
-            //    Console.WriteLine($"Rome legionaire {this.Name} is near the enemy warriors and attack !");
-            //}
         }
+
         public override string ToString()
         {
             return "legionnaire";

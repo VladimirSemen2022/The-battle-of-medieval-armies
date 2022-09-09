@@ -8,12 +8,13 @@ namespace Army__middle_ages_battle_
     {
         static void Main(string[] args)
         {
-            LogFile.StopLogging();      //Запись лога в файл остановлена, если необходимо то можно остановить запись в лог-файл
+            LogFile.StopLogging();      //Запись лога в файл остановлена, если необходимо то можно включить запись в лог-файл
 
             LogFile.Log("----------------------------------------------------------------", LogLevel.Information);
             LogFile.Log("Program start", LogLevel.Information);
-            int distance = 15;      //Первоначальная дистация между армиями
-            int armySize = 18;      //Количество воинов в армии
+
+            int distance = 15;      //Первоначальная дистация между армиями (не более 20)
+            int armySize = 18;      //Количество воинов в армии (не более 18)
 
             try
             {
@@ -22,7 +23,7 @@ namespace Army__middle_ages_battle_
 
                 //Начало битвы между армиями
                 Random whoFirst = new Random();
-                newBattle.Battle(whoFirst.Next(1, 3), 300);
+                newBattle.Battle(whoFirst.Next(1, 3), 300);     //Задаются два параметра 1-кто ходит первый и 2-задержка между ходами армий в миллисекундах
             }
             catch (Exception ex)
             {

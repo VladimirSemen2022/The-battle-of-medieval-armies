@@ -1,7 +1,5 @@
 ﻿using System;
 using ConsoleApp2.Weapone;
-using Dapper_BDSQL.Controller;
-using The_battle_of_medieval_armies.Army;
 using The_battle_of_medieval_armies.Models.Armor;
 
 namespace ConsoleApp2.Soldiers

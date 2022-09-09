@@ -4,9 +4,6 @@ using ConsoleApp2.Soldiers.Swordsman;
 using Dapper_BDSQL.Controller;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using The_battle_of_medieval_armies.Models.Soldiers.SpecialSoldier;
 
 namespace The_battle_of_medieval_armies.Army

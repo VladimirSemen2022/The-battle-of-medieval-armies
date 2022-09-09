@@ -44,14 +44,8 @@ namespace ConsoleApp2.Soldiers.SpecialSoldier
         {
             if (this.Distance > this.Weapone.Range && this.ALive)
             {
-                //Console.WriteLine($"Lance knight {this.Name} walks to the enemy warriors!");
                 this.Distance -= 1;
             }
-            //else if (this.ALive)
-            //{
-            //    this.Distance = 0;
-            //    Console.WriteLine($"Lance knight {this.Name} is near the enemy warriors and attack !");
-            //}
         }
         public override string ToString()
         {

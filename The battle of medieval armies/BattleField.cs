@@ -1,21 +1,15 @@
 ﻿using Dapper_BDSQL.Controller;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using The_battle_of_medieval_armies.Army;
 
 namespace The_battle_of_medieval_armies.Models.Army
 {
-    delegate void Logging (ArmyBase army, int name, string action);    //Создание делегата под логирование
     class BattleField
     {
         public RomeArmy RArmy { get; set; }
-
         public VikingArmy VArmy { get; set; }
 
-        //public ArmyBase Battlefield { get; set; }
 
         public BattleField()
         {
@@ -23,13 +17,13 @@ namespace The_battle_of_medieval_armies.Models.Army
             VArmy = new VikingArmy();
         }
 
-        public BattleField(int size=5, int distance=20)
+        public BattleField(int size=5, int distance=20)         //Создание противоборствующих армий
         {
             RArmy = new RomeArmy(size, distance);
             VArmy = new VikingArmy(size, distance);
         }
 
-        public void Battle(int firstStep, int deley)
+        public void Battle(int firstStep, int deley)            //Основная игра
         {
             //Создание класса Singleton (одиночка) для реализации подключения к базе данных SQL
             LogFile.Log("Read file to SQLBD-way", LogLevel.Information);
@@ -40,6 +34,8 @@ namespace The_battle_of_medieval_armies.Models.Army
             LogFile.Log("Connection to SQLBD is successful", LogLevel.Information);
 
             newLink.StopLogging();          //Остановка логгирования боя в базе SQL
+
+
             //Начало битвы
             ShowBattleField();
             ShowStart();
@@ -90,18 +86,17 @@ namespace The_battle_of_medieval_armies.Models.Army
             }
         }
 
-        public void ShowBattleField()
+        public void ShowBattleField()                           //Показать игровое поле
         {
             Console.Clear();
             int x = Console.WindowWidth;
             int y = Console.WindowHeight;
             string[] game = { "TYPE WARRIORS        HP    ARMOR", "ROME ARMY", "FIELD OF BATTLE", "VIKING ARMY", "X - Exit from game", "Rome warriors", "Viking warriors",
-                $"TRUMP - ", $"Alive warriors - ", $"Dead warriors - ", "T - Take cards from playing field" };
+                $"TRUMP - ", $"Alive warriors - ", $"Dead warriors - " };
             Console.SetCursorPosition(3, 4);
-            Console.WriteLine(game[0]);     //"TYPE WARRIORS"
+            Console.WriteLine(game[0]);     //"TYPE WARRIORS        HP    ARMOR"
             Console.SetCursorPosition(83, 4);
-            Console.WriteLine(game[0]);     //"TYPE WARRIORS"
-            //Console.WriteLine();
+            Console.WriteLine(game[0]);     //"TYPE WARRIORS        HP    ARMOR"
             Console.SetCursorPosition(0, 1);
             Console.WriteLine(new string('-', x));
             Console.WriteLine();
@@ -119,13 +114,8 @@ namespace The_battle_of_medieval_armies.Models.Army
             Console.WriteLine(new string('-', x));
             Console.SetCursorPosition(0, 28);
             Console.WriteLine(new string('-', x));
-            //Console.SetCursorPosition(7, 29);       //"X - Exit from game"
-            //Console.WriteLine(game[4]);
-            //Console.SetCursorPosition(5 + game[4].Length, 29);
-            //Console.WriteLine(game[10]);
-            Console.SetCursorPosition(32, 29);   //"Warriors participating in the battle - "
             Console.WriteLine($"{game[8]}{RArmy.Army.FindAll(x => x.ALive).Count + VArmy.Army.FindAll(x => x.ALive).Count}");
-            Console.SetCursorPosition(22 + game[10].Length + game[8].Length, 29);  //"Warriors out of the battle -"
+            Console.SetCursorPosition(22 + game[8].Length, 29);  //"Warriors out of the battle -"
             Console.WriteLine($"{game[9]}{ RArmy.Army.FindAll(x => !x.ALive).Count + VArmy.Army.FindAll(x => !x.ALive).Count}");
             for (int i = 0; i < 26; i++)
             {
@@ -141,7 +131,7 @@ namespace The_battle_of_medieval_armies.Models.Army
             ShowVikingArmy();
         }
 
-        public void ShowRomeArmy()
+        public void ShowRomeArmy()                              //Показать римскую армию 
         {
             int step = 1;
             int x = Console.WindowWidth;
@@ -171,7 +161,7 @@ namespace The_battle_of_medieval_armies.Models.Army
             Console.WriteLine($"Knights      alive - {knightsAlive}  dead - {knights - knightsAlive}");
         }
 
-        public void ShowVikingArmy()
+        public void ShowVikingArmy()                            //Показать армию викингов 
         {
             int x = Console.WindowWidth;
             int step = 1;
@@ -201,7 +191,7 @@ namespace The_battle_of_medieval_armies.Models.Army
             Console.WriteLine($"Berserks  alive - {berserksAlive}  dead - {berserks - berserksAlive}");
         }
 
-        public void ShowEnd(string name)                       //Отображение надписи в конце игры о том кто выиграл
+        public void ShowEnd(string name)                        //Отображение надписи в конце игры о том кто выиграл
         {
             int x = Console.WindowWidth;
             Console.SetCursorPosition(x / 2 - (name.Length + 5) / 2 - 2, 14);
@@ -215,7 +205,7 @@ namespace The_battle_of_medieval_armies.Models.Army
             Console.ReadKey();
         }
 
-        public void ShowStart()                       //Отображение надписи в начале игры
+        public void ShowStart()                                 //Отображение надписи в начале игры
         {
             int x = Console.WindowWidth;
             string start = "Press any key to start the game!";

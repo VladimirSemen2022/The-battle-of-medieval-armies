@@ -1,6 +1,5 @@
 ﻿using System;
 using ConsoleApp2.Weapone.OneHande;
-using ConsoleApp2.Weapone.TwoHande;
 using The_battle_of_medieval_armies.Models.Armor;
 
 namespace ConsoleApp2.Soldiers.SpecialSoldier
