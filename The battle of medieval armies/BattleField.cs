@@ -92,7 +92,7 @@ namespace The_battle_of_medieval_armies.Models.Army
             int x = Console.WindowWidth;
             int y = Console.WindowHeight;
             string[] game = { "TYPE WARRIORS        HP    ARMOR", "ROME ARMY", "FIELD OF BATTLE", "VIKING ARMY", "X - Exit from game", "Rome warriors", "Viking warriors",
-                $"TRUMP - ", $"Alive warriors - ", $"Dead warriors - " };
+                "", $"Alive warriors - ", $"Dead warriors - " };
             Console.SetCursorPosition(3, 4);
             Console.WriteLine(game[0]);     //"TYPE WARRIORS        HP    ARMOR"
             Console.SetCursorPosition(83, 4);
@@ -114,8 +114,9 @@ namespace The_battle_of_medieval_armies.Models.Army
             Console.WriteLine(new string('-', x));
             Console.SetCursorPosition(0, 28);
             Console.WriteLine(new string('-', x));
+            Console.SetCursorPosition(32, 29);
             Console.WriteLine($"{game[8]}{RArmy.Army.FindAll(x => x.ALive).Count + VArmy.Army.FindAll(x => x.ALive).Count}");
-            Console.SetCursorPosition(22 + game[8].Length, 29);  //"Warriors out of the battle -"
+            Console.SetCursorPosition(56 + game[8].Length, 29);  //"Warriors out of the battle -"
             Console.WriteLine($"{game[9]}{ RArmy.Army.FindAll(x => !x.ALive).Count + VArmy.Army.FindAll(x => !x.ALive).Count}");
             for (int i = 0; i < 26; i++)
             {
